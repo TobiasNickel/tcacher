@@ -1,0 +1,16 @@
+{
+  "name": "tcacher",
+  "version": "0.0.0",
+  "description": "To collect jobs to be executed as a collection.",
+  "main": "tcacher.js",
+  "scripts": {
+    "test": "test.js"
+  },
+  "keywords": [
+    "cache",
+    "requestAPIs",
+    "promise"
+  ],
+  "author": "Tobias Nickel",
+  "license": "MIT"
+}
