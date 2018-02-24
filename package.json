@@ -1,16 +1,17 @@
 {
-  "name": "tcacher",
-  "version": "0.0.0",
-  "description": "To collect jobs to be executed as a collection.",
-  "main": "tcacher.js",
-  "scripts": {
-    "test": "test.js"
-  },
-  "keywords": [
-    "cache",
-    "requestAPIs",
-    "promise"
-  ],
-  "author": "Tobias Nickel",
-  "license": "MIT"
+    "name": "tcacher",
+    "version": "0.0.3",
+    "description": "method query batching, perfect for graphql and database libraries",
+    "main": "tcacher.js",
+    "scripts": {
+        "test": "test.js"
+    },
+    "keywords": [
+        "batching",
+        "cache",
+        "requestAPIs",
+        "promise"
+    ],
+    "author": "Tobias Nickel",
+    "license": "MIT"
 }
