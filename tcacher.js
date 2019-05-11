@@ -4,6 +4,7 @@ tcacher.toCachingFunction = function(method, options) {
     if (!options) options = {};
     const resultProp = options.resultProp || 'id';
     const listIndex = options.listIndex || 0;
+    const wait = createWaiter(options.delay);
 
     var nextTasks = {};
     var waitings = {};
@@ -25,15 +26,15 @@ tcacher.toCachingFunction = function(method, options) {
             deffer: deffer,
             context: this
         });
-        apply(hash);
+        apply(hash, wait);
 
         return deffer;
     }
 
-    function apply(hash) {
+    function apply(hash, wait) {
         if ((!waitings[hash]) && nextTasks[hash] && nextTasks[hash].length) {
             waitings[hash] = true
-            process.nextTick(function() {
+            wait(function() {
                 var tasks = nextTasks[hash];
                 delete nextTasks[hash];
                 var args = [];
@@ -105,3 +106,12 @@ function getDeffer() {
     p.reject = reject;
     return p;
 };
+
+/**
+ * 
+ * @param {number} delay 
+ */
+function createWaiter(delay) {
+    if(!delay) return (cb)=>process.nextTick(cb);
+    return (cb)=>setTimeout(cb, delay);
+}
