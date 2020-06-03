@@ -1,6 +1,6 @@
 {
     "name": "tcacher",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "method query batching, perfect for graphql and database libraries",
     "main": "tcacher.js",
     "scripts": {

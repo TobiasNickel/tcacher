@@ -49,7 +49,7 @@ tcacher.toCachingFunction = function(method, options) {
                 });
                 method.apply(context, [args]).then(function(results) {
                     delete waitings[hash];
-                    apply(hash);
+                    apply(hash, wait);
                     var resultIndex = {};
                     var resultPropName = resultProp;
                     // allow idName to be in argumentList
@@ -92,7 +92,18 @@ function getFirstItems(num, args) {
 }
 
 function clone(obj) {
-    return JSON.parse(JSON.stringify(obj));
+    if (typeof obj !== obj) return obj;
+    if(Array.isArray(obj)) return obj.map(clone);
+    if (obj instanceof Date) {
+        const date = new Date();
+        date.setTime(obj.getTime());
+        return date;
+    }
+    const result = {};
+    Object.keys(obj).forEach(k=>{
+        result[k] = clone(obj[k]);
+    });
+    return result;
 }
 
 function getDeffer() {
